@@ -23,7 +23,7 @@ resource "aws_db_subnet_group" "mysql" {
 
 resource "aws_db_parameter_group" "default" {
   name   = "roboshop-${var.ENV}-mysql-pg"
-  family = "mysql5.6"
+  family = "mysql5.7"
 }
 
 
