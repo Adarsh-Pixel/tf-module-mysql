@@ -8,7 +8,7 @@ resource "aws_db_instance" "mysql" {
   password                = "roboshop1"
   parameter_group_name    = aws_db_parameter_group.default.name
   db_subnet_group_name    = aws_db_subnet_group.mysql.name
-  vpc_security_group_ids  = aws_security_group.allows_mysql.id
+  vpc_security_group_ids  = [aws_security_group.allows_mysql.id]
   skip_final_snapshot     = true
 }
 
