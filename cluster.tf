@@ -1,3 +1,23 @@
+resource "aws_db_instance" "mysql" {
+  allocated_storage    = 10
+  db_name              = "mysql"
+  engine               = "mysql"
+  engine_version       = "5.7"
+  instance_class       = "db.t3.micro"
+  username             = "admin1"
+  password             = "roboshop1"
+  parameter_group_name = "default.mysql5.7"
+  skip_final_snapshot  = true
+}
+resource "aws_db_subnet_group" "mysql" {
+  name       = "roboshop-${var.ENV}-mysql-subnet-group"
+  subnet_ids = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNET_IDS
+
+  tags = {
+    Name = "roboshop-${var.ENV}-mysql-subnet-group"
+  }
+}
+
 # # Creates Elastic Cache cluster
 # resource "aws_elasticache_cluster" "redis" {
 #   cluster_id           = "roboshop-${var.ENV}-redis"
