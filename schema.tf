@@ -1,3 +1,4 @@
+#Injecting the schema
 resource "null_resource" "schema" {
   
   depends_on = [aws_db_instance.mysql]
