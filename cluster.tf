@@ -4,8 +4,8 @@ resource "aws_db_instance" "mysql" {
   engine                  = "mysql"
   engine_version          = "5.7"
   instance_class          = var.MYSQL_INSTANCE_TYPE
-  username                = jsondecode(aws_secretsmanager_secret_version.secret_version.secret_string)["MYSQL_USERNAME"]
-  password                = jsondecode(aws_secretsmanager_secret_version.secret_version.secret_string)["MYSQL_PASSWORD"]
+  username                = jsondecode(data.aws_secretsmanager_secret_version.secret_version.secret_string)["MYSQL_USERNAME"]
+  password                = jsondecode(data.aws_secretsmanager_secret_version.secret_version.secret_string)["MYSQL_PASSWORD"]
   parameter_group_name    = aws_db_parameter_group.default.name
   db_subnet_group_name    = aws_db_subnet_group.mysql.name
   vpc_security_group_ids  = [aws_security_group.allows_mysql.id]
